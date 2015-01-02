@@ -4,7 +4,20 @@ import sys
 
 class Total(object):
 
-    def __init__(self,filename="accounting14.taskpaper"):
+    def __init__(self,budget=None,filename="accounting15.taskpaper"):
+        if not budget:
+            self.bud={
+                'rent':9600,
+                'health':1200,
+                'phone':660,
+                'car':1440,
+                'travel':8400,
+                'priorities':18000,
+                'business':8660,
+                'personal':10800
+            }
+        else:
+            self.bud = budget
         #print "in init"
         self.filename = filename
         self.file = open(filename, 'r')
@@ -176,7 +189,7 @@ class Total(object):
         
         
     def year_report(self,month_num=1):
-        budget = [9600,1200,660,1440,8400,18000,8660,10800]
+        budget = [self.bud['rent'],self.bud['health'],self.bud['phone'],self.bud['car'],self.bud['travel'],self.bud['priorities'],self.bud['business'],self.bud['personal']]
         details = self.report_numbers()
         print "Total Needed After Tax Income:", sum(budget)
         print "Current After Tax Income:", details['income']
@@ -198,5 +211,5 @@ class Total(object):
         print "TOTAL\t\t"+str(sum(budget))+"\t\t"+str(sum(budget)/12.0*int(month_num))+"\t\t"+str(total*-1)+"\t\t"+str(sum(budget)/12.0*int(month_num)-total*-1)+"\t\t"+str(sum(budget)-total*-1)
             
 if __name__ == "__main__":
-    t = Total('accounting14.taskpaper')
+    t = Total('accounting15.taskpaper')
     t.run()

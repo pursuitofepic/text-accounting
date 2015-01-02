@@ -2,8 +2,6 @@
 from project import Project
 from places import Place
 from total import Total
-from openpyxl import Workbook
-from openpyxl import load_workbook
 import sys 
 
 if __name__ == "__main__":
@@ -32,7 +30,17 @@ if __name__ == "__main__":
     print ""
     
     print "Goal 6: Pay off all Debt and save 10K"
-    t = Total()
+    budget={
+    'rent':9600,
+    'health':1200,
+    'phone':660,
+    'car':1440,
+    'travel':8400,
+    'priorities':18000,
+    'business':8660,
+    'personal':10800
+    }
+    t = Total(budget)
     year = sys.argv[1] if len(sys.argv) > 1 else 1
     t.year_report(year)
     print ""
